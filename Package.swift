@@ -28,10 +28,10 @@ import PackageDescription
 let package = Package(
     name: "AFNetworking",
     platforms: [
-        .macOS(.v10_10),
-        .iOS(.v9),
-        .tvOS(.v9),
-        .watchOS(.v2)
+        .macOS(.v10_13),
+        .iOS(.v12),
+        .tvOS(.v12),
+        .watchOS(.v5)
     ],
     products: [
         .library(name: "AFNetworking", targets: ["AFNetworking"]),
