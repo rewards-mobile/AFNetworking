@@ -38,7 +38,17 @@ let package = Package(
         .library(name: "UIKit_AFNetworking", targets: ["UIKit_AFNetworking"])
     ],
     targets: [
-        .target(name: "AFNetworking", path: "AFNetworking", publicHeadersPath: ""),
-        .target(name: "UIKit_AFNetworking", dependencies: ["AFNetworking"], path: "UIKit+AFNetworking", publicHeadersPath: "")
+        .target(
+            name: "AFNetworking",
+            path: "AFNetworking",
+            publicHeadersPath: "",
+            linkerSettings: [.unsafeFlags(["-fprofile-instr-generate"], .when(configuration: .debug))]
+        ),
+        .target(
+            name: "UIKit_AFNetworking",
+            dependencies: [.target(name: "AFNetworking")],
+            path: "UIKit+AFNetworking",
+            publicHeadersPath: ""
+        )
     ]
 )
