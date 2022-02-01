@@ -42,14 +42,7 @@ let package = Package(
         .target(
             name: "AFNetworking",
             path: "AFNetworking",
-            publicHeadersPath: ""//,
-//            linkerSettings: [
-//                .unsafeFlags(
-//                    [
-//                        "-fprofile-instr-generate"
-//                    ],
-//                    .when(configuration: .debug))
-//            ]
+            publicHeadersPath: ""
         ),
         .target(
             name: "UIKit_AFNetworking",
