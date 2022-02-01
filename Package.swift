@@ -1,4 +1,4 @@
-// swift-tools-version:5.0
+// swift-tools-version:5.3
 //
 //  Package.swift
 //
@@ -35,10 +35,26 @@ let package = Package(
     ],
     products: [
         .library(name: "AFNetworking", targets: ["AFNetworking"]),
-        .library(name: "UIKit_AFNetworking", targets: ["UIKit_AFNetworking"])
+        .library(name: "UIKit_AFNetworking", targets: ["UIKit_AFNetworking"]),
+        .library(name: "AFgzipRequestSerializer", targets: ["AFgzipRequestSerializer"])
     ],
     targets: [
-        .target(name: "AFNetworking", path: "AFNetworking", publicHeadersPath: ""),
-        .target(name: "UIKit_AFNetworking", dependencies: ["AFNetworking"], path: "UIKit+AFNetworking", publicHeadersPath: "")
+        .target(
+            name: "AFNetworking",
+            path: "AFNetworking",
+            publicHeadersPath: ""
+        ),
+        .target(
+            name: "UIKit_AFNetworking",
+            dependencies: [.target(name: "AFNetworking")],
+            path: "UIKit+AFNetworking",
+            publicHeadersPath: ""
+        ),
+        .target(
+            name: "AFgzipRequestSerializer",
+            dependencies: [.target(name: "AFNetworking")],
+            path: "AFgzipRequestSerializer",
+            publicHeadersPath: ""
+        )
     ]
 )
