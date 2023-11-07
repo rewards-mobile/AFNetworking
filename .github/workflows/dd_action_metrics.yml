@@ -1,0 +1,31 @@
+name: "Send DD Metrics"
+on:
+  deployment: {}
+  deployment_status: {}
+
+  workflow_run:
+    workflows:
+      - '**'
+    types:
+      - completed
+  pull_request:
+    types:
+      - opened
+      - closed
+  pull_request_review:
+    types:
+      - submitted
+  issue_comment:
+    types:
+      - created
+
+jobs:
+  send:
+    runs-on: [mobile, nonprod]
+    timeout-minutes: 10
+    steps:
+      - uses: rewards-devops/gh-common-actions/datadog-actions-metrics@main
+        with:
+          datadog-api-key: ${{ secrets.NONPROD_DD_API_KEY }}
+          collect-job-metrics: true
+          send-pull-request-labels: true

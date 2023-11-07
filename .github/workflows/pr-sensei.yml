@@ -1,0 +1,36 @@
+name: PR Sensei Reviewer
+run-name: PR Sensei Reviewer - ${{ github.event_name }} - ${{ github.event.action }}
+
+permissions:
+  contents: read
+  pull-requests: write
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, labeled]
+  pull_request_review_comment:
+    types: [created]
+
+concurrency:
+  group: ${{ github.repository }}-${{ github.event.number || github.head_ref || github.sha }}-${{ github.workflow }}-${{ github.event_name =='pull_request_review_comment' && 'pr_comment' || 'pr' }}-${{ github.event.action }}
+  cancel-in-progress: ${{ github.event_name != 'pull_request_review_comment' }}
+
+jobs:
+  review:
+    runs-on: [ nonprod ]
+    env:
+      GITHUB_EVENT_TYPE: ${{ github.event.action }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: rewards-devops/pr-sensei@latest
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
+          OPENAI_API_KEY: ${{ secrets.OPENAISECRET }}
+        with:
+          debug: true
+          review_simple_changes: true
+          review_comment_lgtm: true
+          labels: 'true'
