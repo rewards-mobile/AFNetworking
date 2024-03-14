@@ -235,6 +235,7 @@ FOUNDATION_EXPORT id AFJSONObjectByRemovingKeysWithNullValues(id JSONObject, NSJ
  - `image/x-bmp`
  - `image/x-xbitmap`
  - `image/x-win-bitmap`
+ - `image/webp`
  */
 @interface AFImageResponseSerializer : AFHTTPResponseSerializer
 
