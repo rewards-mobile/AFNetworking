@@ -1,4 +1,4 @@
-// swift-tools-version:5.7
+// swift-tools-version: 6.2
 //
 //  Package.swift
 //
@@ -27,8 +27,8 @@ import PackageDescription
 
 let package = Package(name: "AFNetworking",
                       platforms: [.macOS(.v10_13),
-                                  .iOS(.v14),
-                                  .tvOS(.v11),
+                                  .iOS(.v18),
+                                  .tvOS(.v12),
                                   .watchOS(.v4)],
                       products: [.library(name: "AFNetworking",
                                     targets: ["AFNetworking"]),
