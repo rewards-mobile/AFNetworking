@@ -27,7 +27,7 @@ import PackageDescription
 
 let package = Package(name: "AFNetworking",
                       platforms: [.macOS(.v10_13),
-                                  .iOS(.v18),
+                                  .iOS(.v17),
                                   .tvOS(.v12),
                                   .watchOS(.v4)],
                       products: [.library(name: "AFNetworking",
